@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>quarto-input5318c9ebb151489e</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Агзамов Лаб 5_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Агзамов Лаб 5_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Агзамов Лаб 5_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Агзамов Лаб 5_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Агзамов Лаб 5_files/libs/quarto-html/popper.min.js"></script>
+<script src="Агзамов Лаб 5_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Агзамов Лаб 5_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Агзамов Лаб 5_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Агзамов Лаб 5_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Агзамов Лаб 5_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Агзамов Лаб 5_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Агзамов Лаб 5_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="российский-университет-дружбы-народов" class="level1">
+<h1>РОССИЙСКИЙ УНИВЕРСИТЕТ ДРУЖБЫ НАРОДОВ</h1>
+<p>Факультет физико-математических и естественных наук Кафедра прикладной информатики и теории вероятностей</p>
+<section id="отчет-по-лабораторной-работе-5" class="level2">
+<h2 class="anchored" data-anchor-id="отчет-по-лабораторной-работе-5">Отчет по лабораторной работе №5</h2>
+<p>дисциплина: Архитектура ЭВМ</p>
+<p>Студент: Агзамов Артур Дамирович(1032253528) Группа: НКАбд-01-25</p>
+</section>
+</section>
+<section id="содержание" class="level1">
+<h1>Содержание</h1>
+<ol type="1">
+<li>Цель работы стр. 4</li>
+<li>Теоретическое введение стр. 5</li>
+<li>Выполнение лабораторной работы стр. 12</li>
+<li>Выполнение самостоятельной работы стр. 19</li>
+<li>Выводы стр. 22</li>
+</ol>
+</section>
+<section id="список-иллюстраций" class="level1">
+<h1>Список иллюстраций</h1>
+<ol type="1">
+<li>Puc. 5.1. Oкuo Midnight Commander cmp. 7</li>
+<li>Puc. 5.2.lab01 cmp. 12</li>
+<li>Puc. 5.3.lab02 cmp. 12</li>
+<li>Puc. 5.4.lab03 cmp. 13</li>
+<li>Puc. 5.5.lab04 cmp. 13</li>
+<li>Puc. 5.6.lab05 cmp. 14</li>
+<li>Puc. 5.7.lab06 cmp. 14</li>
+<li>Puc. 5.8 .lab07 cmp. 15</li>
+<li>Puc. 5.9 .lab08 cmp. 17</li>
+<li>Puc. 5.10 .lab09 cmp. 18</li>
+<li>Puc. 5.11 .lab10 cmp. 18</li>
+<li>Puc. 5.12 .sam01 cmp. 19</li>
+<li>Puc. 5.13 .sam02 cmp. 20</li>
+<li>Puc. 5.14 .sam03 cmp. 21</li>
+</ol>
+</section>
+<section id="цель-работы" class="level1">
+<h1>1.Цель работы</h1>
+<p>Приобретение практических навыков работы в Midnight Commander. Освоение инструкций языка ассемблера mov и int.</p>
+</section>
+<section id="теоретическое-введение" class="level1">
+<h1>2. Теоретическое введение</h1>
+<section id="основы-работы-с-midnight-commander" class="level2">
+<h2 class="anchored" data-anchor-id="основы-работы-с-midnight-commander">2.1. Основы работы с Midnight Commander</h2>
+<p>Midnight Commander (или просто mc ) — это программа, которая позволяет просматривать структуру каталогов и выполнять основные операции по управлению файловой системой, т.е. mc является файловым менеджером. Midnight Commander позволяет сделать работу с файлами более удобной и наглядной. Для активации оболочки Midnight Commander достаточно ввести в командной строке mc и нажать клавишу Enter (рис. 5.1). B Midnight Commander используются функциональные клавиши F1 — F10 , к которым привязаны часто выполняемые операции (табл. 5.1).</p>
+<p>Таблица 5.1. Функциональные клавиши Midnight Commander</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Функциональные клавиши</th>
+<th style="text-align: left;">Выполняемое действие</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F1</td>
+<td style="text-align: left;">вызов контекстно-зависимой подсказки</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F2</td>
+<td style="text-align: left;">вызов меню, созданного пользователем</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F3</td>
+<td style="text-align: left;">просмотр файла, на который указывает <br> подсветка в активной панели <br> вызов встроенного редактора для <br> файла, на который указывает подсветка <br> в активной панели</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F4</td>
+<td style="text-align: left;">копирование файла или группы <br> отмеченных файлов из каталога, <br> отображаемого в активной панели, в <br> каталог, отображаемый на второй <br> панели</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">F6</th>
+<th style="text-align: left;">перенос файла или группы отмеченных <br> файлов из каталога, отображаемого в <br> активной панели, в каталог, <br> отображаемый на второй панели</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F7</td>
+<td style="text-align: left;">создание подкаталога в каталоге, <br> отображаемом в активной панели</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F8</td>
+<td style="text-align: left;">удаление файла (подкаталога) или <br> группы отмеченных файлов</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F9</td>
+<td style="text-align: left;">вызов основного меню программы</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F10</td>
+<td style="text-align: left;">выход из программы</td>
+</tr>
+</tbody>
+</table>
+<p>Следующие комбинации клавиш облегчают работу с Midnight Commander:</p>
+<ul>
+<li>Tab используется для переключениями между панелями;</li>
+<li><span class="math inline">\(\uparrow\)</span> и <span class="math inline">\(\downarrow\)</span> используется для навигации, Enter для входа в каталог или открытия файла (если в файле расширений mc.ext заданы правила связи определённых расширений файлов с инструментами их запуска или обработки);</li>
+<li><span class="math inline">\(\mathrm{Ctrl}+\mathrm{u}\)</span> (или через меню Команда <span class="math inline">\(&gt;\)</span> Переставить панели ) меняет местами содержимое</li>
+</ul>
+<p>правой и левой панелей;</p>
+<ul>
+<li>Ctrl + о (или через меню Команда &gt; Отключить панели ) скрывает или возвращает панели</li>
+</ul>
+<p>Midnight Commander, за которыми доступен для работы командный интерпретатор</p>
+<p>оболочки и выводимая туда информация. <span class="math inline">\(\cdot \mathrm{Ctrl}+\mathrm{x}+\mathrm{d}\)</span> (или через меню Команда &gt; Сравнить каталоги ) позволяет сравнить содержимое каталогов, отображаемых на левой и правой панелях.</p>
+<p>Дополнительную информацию о Midnight Commander можно получить по команде man mc и на странице проекта [3].</p>
+</section>
+</section>
+<section id="структура-программы-на-языке-ассемблера-nasm" class="level1">
+<h1>2.3. Структура программы на языке ассемблера NASM</h1>
+<p>Программа на языке ассемблера NASM, как правило, состоит из трёх секций: секция кода программы (SECTION .text), секция инициированных (известных во время компиляции) данных (SECTION .data) и секция неинициализированных данных (тех, под которые во время компиляции только отводится память, а значение присваивается в ходе выполнения программы) (SECTION .bss). Таким образом, общая структура программы имеет следующий вид:</p>
+<section id="section-data-секция-содержит-переменные-для" class="level2">
+<h2 class="anchored" data-anchor-id="section-data-секция-содержит-переменные-для">SECTION data : Секция содержит переменные, для</h2>
+</section>
+<section id="которых-задано-начальное-значение" class="level2">
+<h2 class="anchored" data-anchor-id="которых-задано-начальное-значение">: которых задано начальное значение</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image/img-0.jpeg" class="img-fluid figure-img"></p>
+<figcaption>img-0.jpeg</figcaption>
+</figure>
+</div>
+<p>Рис. 5.1. Окно Midnight Commander</p>
+<p>SECTION .bss ; Секция содержит переменные, для … ; которых не задано начальное значение SECTION .text ; Секция содержит код программы GLOBAL _start _start: ; Точка входа в программу … ; Текст программы mov eax. 1 ; Системный вызов для выхода (sys_exit) mov ebx,0 ; Выход с кодом возврата 0 (без ошибок) int 80h ; Вызов ядра</p>
+<p>Для объявления инициированных данных в секции .data используются директивы DB, DW, DD, DQ и DT, которые резервируют память и указывают, какие значения должны храниться в этой памяти: • DB (define byte) — определяет переменную размером в 1 байт; • DW (define word) — определяет переменную размеров в 2 байта (слово); • DD (define double word) — определяет переменную размером в 4 байта (двойное слово); • DQ (define quad word)— определяет переменную размером в 8 байт (учетверённое слово); • DT (define ten bytes) — определяет переменную размером в 10 байт.</p>
+<p>Директивы используются для объявления простых переменных и для объявления массивов. Для определения строк принято использовать директиву DB в связи с особенностями хранения данных в оперативной памяти. Синтаксис директив определения данных следующий: DB [, ] [, ]</p>
+<p>Пример a db 10011001b</p>
+<p>b db ‘!’</p>
+<p>c db “Hello” d dd -345d</p>
+<p>h dd 0f1ah</p>
+<p>Пояснение определяем переменную а размером 1 байт с начальным значением, заданным в двоичной системе счисления (на двоичную систему счисления указывает также буква b (binary) в конце числа)</p>
+<p>определяем переменную b в 1 байт, инициализируемую символом !</p>
+<p>определяем строку из 5 байт</p>
+<p>определяем переменную d размером 4 байта с начальным значением, заданным в десятичной системе счисления (на десятичную систему указывает буква d (decimal) в конце числа)</p>
+<p>определяем переменную h размером 4 байта с начальным значением, заданным в шестнадцатеричной системе счисления (h — hexadecimal)</p>
+<p>Для объявления неинициированных данных в секции .bss используются директивы resb, resw, resd и другие, которые сообщают ассемблеру, что необходимо зарезервировать заданное количество ячеек памяти. Примеры их использования приведены в табл. 5.3.</p>
+<p>Таблица 5.3. Директивы для объявления неинициированных данных</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Директива</th>
+<th style="text-align: center;">Назначение <br> директивы</th>
+<th style="text-align: center;">Аргумент</th>
+<th style="text-align: center;">Назначение аргумента</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">resb</td>
+<td style="text-align: center;">Резервирование <br> заданного числа <br> однобайтовых ячеек</td>
+<td style="text-align: center;">string resb 20</td>
+<td style="text-align: center;">По адресу с меткой <br> string будет <br> расположен массив из <br> 20 однобайтовых ячеек <br> (хранение строки <br> символов)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">resw</td>
+<td style="text-align: center;">Резервирование <br> заданного числа <br> двухбайтовых ячеек <br> (слов)</td>
+<td style="text-align: center;">count resw 256</td>
+<td style="text-align: center;">По адресу с меткой <br> count будет <br> расположен массив из <br> 256 двухбайтовых слов</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">resd</td>
+<td style="text-align: center;">Резервирование <br> заданного числа <br> четырёхбайтовых <br> ячеек (двойных слов)</td>
+<td style="text-align: center;">x resd 1</td>
+<td style="text-align: center;">По адресу с меткой х <br> будет расположено <br> одно двойное слово <br> (т.е. 4 байта для <br> хранения большого <br> числа)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="элементы-программирования" class="level1">
+<h1>2.4. Элементы программирования</h1>
+<section id="описание-инструкции-mov" class="level3">
+<h3 class="anchored" data-anchor-id="описание-инструкции-mov">2.4.1. Описание инструкции mov</h3>
+<p>Инструкция языка ассемблера mov предназначена для дублирования данных источника в приёмнике. В общем виде эта инструкция записывается в виде mov dst src Здесь операнд dst — приёмник, a src — источник. В качестве операнда могут выступать регистры (register), ячейки памяти (memory) и непосредственные значения (const). В табл. 5.4 приведены варианты использования mov с разными операндами.</p>
+<p>Таблица 5.4. Варианты использования mov с разными операндами</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Тип операндов</th>
+<th style="text-align: center;">Пример</th>
+<th style="text-align: center;">Пояснение</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">mov <reg>, <reg></reg></reg></td>
+<td style="text-align: center;">mov eax, ebx</td>
+<td style="text-align: center;">пересылает значение регистра ebx в регистр eax</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">mov <reg>, <mem></mem></reg></td>
+<td style="text-align: center;">mov cx, [eax]</td>
+<td style="text-align: center;">пересылает в регистр сх значение из памяти, указанной в eax</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">mov <mem>, <reg></reg></mem></td>
+<td style="text-align: center;">mov rez, ebx</td>
+<td style="text-align: center;">пересылает в переменную rez значение из регистра ebx</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">mov <reg>, <const></const></reg></td>
+<td style="text-align: center;">mov eax, 403045h</td>
+<td style="text-align: center;">пишет в регистр еax значение 403045h</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">mov <mem>, <const></const></mem></td>
+<td style="text-align: center;">mov byte[rez], 0</td>
+<td style="text-align: center;">записывает в переменную rez значение 0</td>
+</tr>
+</tbody>
+</table>
+<p>ВАЖНО! Переслать значение из одной ячейки памяти в другую нельзя, для этого необходимо использовать две инструкции mov:</p>
+</section>
+</section>
+<section id="mov-eax-x" class="level1">
+<h1>mov eax, x</h1>
+<p>mov y, eax</p>
+<p>Также необходимо учитывать то, что размер операндов приемника и источника должны совпадать. Использование слудующих примеров приведет к ошибке:</p>
+<ul>
+<li>mov al, 1000 h - ошибка, попытка записать 2-байтное число в 1-байтный регистр;</li>
+<li>mov eax,cx - ошибка, размеры операндов не совпадают.</li>
+</ul>
+<section id="описание-инструкции-int" class="level3">
+<h3 class="anchored" data-anchor-id="описание-инструкции-int">2.4.2. Описание инструкции int</h3>
+<p>Инструкция языка ассемблера intпредназначена для вызова прерывания с указанным номером. В общем виде она записывается в виде</p>
+<p>Здесь n - номер прерывания, принадлежащий диапазону 0-255. При программировании в Linux с использованием вызовов ядра sys_calls <span class="math inline">\(\mathrm{n}=80 \mathrm{~h}\)</span> (принято задавать в шестнадцатеричной системе счисления).</p>
+<p>После вызова инструкции int 80 h выполняется системный вызов какой-либо функции ядра Linux. При этом происходит передача управления ядру операционной системы. Чтобы узнать, какую именно системную функцию нужно выполнить, ядро извлекает номер системного вызова из регистра еax. Поэтому перед вызовом прерывания необходимо поместить в этот регистр нужный номер. Кроме того, многим системным функциям требуется передавать какие-либо параметры. По принятым в ОС Linux правилам эти параметры помещаются в порядке следования в остальные регистры процессора: ebx, ecx, edx. Если системная функция должна вернуть значение, то она помещает его в регистр еax.</p>
+</section>
+</section>
+<section id="системные-вызовы-для-обеспечения-диалога-с-пользователем" class="level1">
+<h1>2.4.3. Системные вызовы для обеспечения диалога с пользователем</h1>
+<p>Простейший диалог с пользователем требует наличия двух функций — вывода текста на экран и ввода текста с клавиатуры. Простейший способ вывести строку на экран — использовать системный вызов write. Этот системный вызов имеет номер 4 , поэтому перед вызовом инструкции int необходимо поместить значение 4 в регистр еax. Первым аргументом write, помещаемым в регистр ebx, задаётся дескриптор файла. Для вывода на экран в качестве дескриптора файла нужно указать 1 (это означает «стандартный вывод», т. е. вывод на экран). Вторым аргументом задаётся адрес выводимой строки (помещаем его в регистр есx, например, инструкцией mov ecx, msg). Строка может иметь любую длину. Последним аргументом (т.е. в регистре edx) должна задаваться максимальная длина выводимой строки. Для ввода строки с клавиатуры можно использовать аналогичный системный вызов read. Его аргументы -такие же, как у вызова write,только для «чтения» с клавиатуры используется файловый дескриптор 0 (стандартный ввод). Системный вызов exit является обязательным в конце любой программы на языке ассемблер. Для обозначения конца программы перед вызовом инструкции int 80 h необходимо поместить в регистр еax значение 1 , а в регистр ebx код завершения 0 .</p>
+</section>
+<section id="выполнение-лабораторной-работы" class="level1">
+<h1>3.Выполнение лабораторной работы</h1>
+<p>Открыли Midnight Commander. <img src="image/img-1.jpeg" class="img-fluid" alt="img-1.jpeg"></p>
+<p>Рис.5.3.lab02</p>
+<p>Перешли в каталог /work/arch-pc. <img src="image/img-2.jpeg" class="img-fluid" alt="img-2.jpeg"></p>
+<p>Рис.5.4.lab03 С помощью F7 создали папку lab05 и перешли в созданный каталог. <img src="image/img-3.jpeg" class="img-fluid" alt="img-3.jpeg"></p>
+<p>Рис.5.5.lab04</p>
+<p>С помощью команды touch создали файл lab5-1.asm.</p>
+</section>
+<section id="compagzamovfedora" class="level1">
+<h1>compagzamov@fedora: / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /</h1>
+<p>С помощью F3 открыли файл lab5-1.asm для просмотра и убедились, что файл содержит текст программы.</p>
+<p>Оттранслировали файл в объектный, выполнили компоновку и запустили его. Программа вывела ‘Введите строку:’ и ожидала ввода. На запрос я ввел свою ФИО. <img src="image/img-4.jpeg" class="img-fluid" alt="img-4.jpeg"></p>
+<p>Рис.5.8.lab07</p>
+</section>
+<section id="подключение-внешнего-файла-in_out.asm" class="level1">
+<h1>5.3.1. Подключение внешнего файла in_out.asm</h1>
+<p>Для упрощения написания программ часто встречающиеся одинаковые участки кода (такие как, например, вывод строки на экран или выход их программы) можно оформить в виде подпрограмм и сохранить в отдельные файлы, а во всех нужных местах поставить вызов нужной подпрограммы. Это позволяет сделать основную программу более удобной для написания и чтения. NASM позволяет подключать внешние файлы с помощью директивы %include, которая предписывает ассемблеру заменить эту директиву содержимым файла. Подключаемые файлы также написаны на языке ассемблера. Важно отметить, что директива %include в тексте программы должна стоять раньше, чем встречаются вызовы подпрограмм из подключаемого файла. Для вызова подпрограммы из внешнего файла используется инструкция call, которая имеет следующий вид call <span class="math inline">\(&lt;\)</span> function <span class="math inline">\(&gt;\)</span></p>
+<p>где function имя подпрограммы. Для выполнения лабораторных работ используется файл in_out.asm1 , который содержит</p>
+<p>следующие подпрограммы [4]:</p>
+<ul>
+<li>slen - вычисление длины строки (используется в подпрограммах печати сообщения</li>
+</ul>
+<p>для определения количества выводимых байтов);</p>
+<ul>
+<li>sprint - вывод сообщения на экран, перед вызовом sprint в регистр еax необходимо записать выводимое сообщение (mov eax,<message>);</message></li>
+<li>sprintLF - работает аналогично sprint, но при выводе на экран добавляет к сообщению символ перевода строки;</li>
+<li>sread - ввод сообщения с клавиатуры, перед вызовом sread в регистр еax необходимо записать адрес переменной в которую введенное сообщение буд записано (mov eax, <span class="math inline">\(&lt;\)</span> buffer <span class="math inline">\(&gt;\)</span> ), в регистр еbx - длину вводимой строки (mov ebx, <span class="math inline">\(&lt;\mathrm{N}&gt;\)</span> );</li>
+<li>iprint - вывод на экран чисел в формате ASCII, перед вызовом iprint в регистр еax необходимо записать выводимое число (mov eax, <span class="math inline">\(&lt;\)</span> int <span class="math inline">\(&gt;\)</span> );</li>
+<li>iprintLF - работает аналогично iprint, но при выводе на экран после числа добавляет</li>
+</ul>
+<p>к символ перевода строки;</p>
+<ul>
+<li>atoi - функция преобразует ascii-код символа в целое число и записыает результат в регистр еax, перед вызовом atoi в регистр еax необходимо записать число (mov eax, <span class="math inline">\(&lt;\)</span> int <span class="math inline">\(&gt;\)</span> );</li>
+<li>quit - завершение программы.</li>
+</ul>
+<p>Скачали файл in_out.asm со страницы курса в ТУИС. Поместили в каталог lab05. В одной из панелей mc открыли каталог с файлом lab5-1.asm. В другой панели каталог со скаченным файлом in_out.asm (для перемещения между панелями используйте Tab ). Скопировали файл in_out.asm в каталог с файлом lab5-1.asm с</p>
+<p>помощью функциональной клавиши F5. С помощью функциональной клавиши F6 создали копию файла lab5-1.asm с именем lab5-2.asm. Выделили файл lab5-1.asm, нажали клавишу F6 , ввели имя файла lab5-2.asm и нажали клавишу Enter. <img src="image/img-5.jpeg" class="img-fluid" alt="img-5.jpeg"></p>
+<p>Рис.5.9.lab08 Исправили текст программы в файле lab5-2.asm с использование подпрограмм из внешнего файла in_out.asm (используйте подпрограммы sprintLF, sread и quit) в соответствии с листингом 5.2. Создали исполняемый файл и проверили его работу.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image/img-6.jpeg" class="img-fluid figure-img"></p>
+<figcaption>img-6.jpeg</figcaption>
+</figure>
+</div>
+<p>Рис.5.10.lab09</p>
+<p>В файле lab5-2.asm замените подпрограмму sprintLF на sprint. Создайте исполняемый файл и проверьте его работу. <img src="image/img-7.jpeg" class="img-fluid" alt="img-7.jpeg"></p>
+<p>Рис.5.11.lab10</p>
+<p>И выяснили, что: sprint - создает вывод строки БЕЗ перевода строки sprintLF - создает вывод строки С переводом строки</p>
+</section>
+<section id="выполнение-самостоятельной-работы" class="level1">
+<h1>5.4. Выполнение самостоятельной работы</h1>
+<p>Создали копию файла lab5-1.asm. Внесли изменения в программу (без использования внешнего файла in_out.asm), так чтобы она работала по следующему алгоритму:</p>
+<ul>
+<li>вывести приглашение типа “Введите строку:”;</li>
+<li>ввести строку с клавиатуры;</li>
+<li>вывести введённую строку на экран.</li>
+</ul>
+<pre><code>compagzamov@fedora: //eork/arch-pc/1ab05$ cat &gt; lab5-1.asm &lt;&lt; 'EOF'
+SECTION .data
+    msg: DB 'Введите строку:', 0
+    res: DB 'Ваша строка:', 0
+SECTION .bss
+    buf1: RESB 80
+SECTION .text
+    GLOBAL _start
+start:
+    mov eax, msg
+    call sprint
+    mov eax, buf1
+    call sread
+    mov eax, res
+    call sprint
+    mov eax, buf1
+    call sprint
+    mov eax, 1
+    mov ebx, 0
+    int 0x80
+clen:
+    push ebx
+    mov ebx, eax
+nextchar:
+    cmp byte [eax], 0
+    jz finished
+    inc eax
+    jmp nextchar
+finished:
+    sub eax, ebx
+    pop ebx
+    ret</code></pre>
+<p>Рис.5.12.sam01</p>
+<p>Получили исполняемый файл и проверили его работу. На приглашение ввели свою фамилию.</p>
+<pre><code>compagzamov@fedora:~/work/arch-pc/lab05$ # Трансляция в объектный файл
+basm -f elf lab5-1.asm
+# Компоновка
+ld -m elf_1386 lab5-1.o -o lab5-1
+# Запуск программы
+f/lab5-1
+Введите строку:Agzamov
+Наша строка:Agzamovcompagzamov@fedora:~/work/arch-pc/lab05$</code></pre>
+<p>Рис.5.13.sam02 Создали копию файла lab5-2.asm. Исправили текст программы с использование подпрограмм из внешнего файла in_out.asm, так чтобы она работала по следующему алгоритму:</p>
+<ul>
+<li>вывести приглашение типа “Введите строку:”;</li>
+<li>ввести строку с клавиатуры;</li>
+<li>вывести введённую строку на экран. <img src="image/img-8.jpeg" class="img-fluid" alt="img-8.jpeg"></li>
+</ul>
+<p>Рис.5.14.sam03</p>
+</section>
+<section id="суис-2-2009" class="level1">
+<h1>СУИС-2-2009</h1>
+<p>Введите строку: Проверка успешно пройдена! Пиши строка! Проверка успешно пройдена!</p>
+<p>Рис.5.15.sam04</p>
+</section>
+<section id="выводы" class="level1">
+<h1>5.Выводы</h1>
+<p>В ходе работы были приобретены навыки работы с файловым менеджером Midnight Commander (mc) и выполнения базовых операций с файлами через командную строку Bash и интерфейс mc. Изучена структура программы на ассемблере NASM, включая назначение секций .data и .bss для хранения данных, а также директив db, dw, dd, dq и dt для определения данных разного размера. Освоено назначение основных инструкций ассемблера, таких как mov для перемещения данных и int 80 h для выполнения системных вызовов в Linux.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
