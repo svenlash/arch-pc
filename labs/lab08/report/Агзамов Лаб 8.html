@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>quarto-input18f3e4f227208b2f</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Агзамов Лаб 8_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Агзамов Лаб 8_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Агзамов Лаб 8_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Агзамов Лаб 8_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Агзамов Лаб 8_files/libs/quarto-html/popper.min.js"></script>
+<script src="Агзамов Лаб 8_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Агзамов Лаб 8_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Агзамов Лаб 8_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Агзамов Лаб 8_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Агзамов Лаб 8_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Агзамов Лаб 8_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Агзамов Лаб 8_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="российский-университет-дружбы-народов" class="level1">
+<h1>РОССИЙСКИЙ УНИВЕРСИТЕТ ДРУЖБЫ НАРОДОВ</h1>
+<p>Факультет физико-математических и естественных наук Кафедра прикладной информатики и теории вероятностей</p>
+<section id="отчет-по-лабораторной-работе-8" class="level2">
+<h2 class="anchored" data-anchor-id="отчет-по-лабораторной-работе-8">Отчет по лабораторной работе №8</h2>
+<p>дисциплина: Архитектура ЭВМ</p>
+<p>Студент: Агзамов Артур Дамирович(1032253528) Группа: НКАбд-01-25</p>
+</section>
+</section>
+<section id="содержание" class="level1">
+<h1>Содержание</h1>
+<ol type="1">
+<li>Цель работы</li>
+<li>Теоретическое введение</li>
+<li>Выполнение лабораторной работы</li>
+<li>Выполнение самостоятельной работы</li>
+<li>Выводы</li>
+</ol>
+</section>
+<section id="цель-работы" class="level1">
+<h1>1.Цель работы</h1>
+<p>Приобретение навыков написания программ с использованием циклов и обработкой аргументов командной строки.</p>
+</section>
+<section id="теоретическое-введение" class="level1">
+<h1>2. Теоретическое введение</h1>
+<section id="организация-стека" class="level2">
+<h2 class="anchored" data-anchor-id="организация-стека">2.1. Организация стека</h2>
+<p>Стек - это структура данных, организованная по принципу LIFO («Last In — First Out» или «последним пришёл — первым ушёл»). Стек является частью архитектуры процессора и реализован на аппаратном уровне. Для работы со стеком в процессоре есть специальные регистры (ss, bp, sp) и команды. Основной функцией стека является функция сохранения адресов возврата и передачи аргументов при вызове процедур. Кроме того, в нём выделяется память для локальных переменных и могут временно храниться значения регистров. На рис. 8.1 показана схема организации стека в процессоре. Стек имеет вершину, адрес последнего добавленного элемента, который хранится в регистре еsp (указатель стека). Противоположный конец стека называется дном. Значение, помещённое в стек последним, извлекается первым. При помещении значения в стек указатель стека уменьшается, а при извлечении - увеличивается. Для стека существует две основные операции: <span class="math inline">\(\cdot\)</span> добавление элемента в вершину стека (push); <span class="math inline">\(\cdot\)</span> извлечение элемента из вершины стека (pop).</p>
+<section id="добавление-элемента-в-стек." class="level3">
+<h3 class="anchored" data-anchor-id="добавление-элемента-в-стек.">2.1.1. Добавление элемента в стек.</h3>
+<p>Команда push размещает значение в стеке, т.е. помещает значение в ячейку памяти, на которую указывает регистр еsp, после этого значение регистра еsp увеличивается на 4. Данная команда имеет один операнд - значение, которое необходимо поместить в стек.</p>
+<p>Примеры: <img src="image/img-0.jpeg" class="img-fluid" alt="img-0.jpeg"></p>
+<p>Рис. 8.1. Организация стека в процессоре</p>
+<p>push -10 ; Поместить -10 в стек push ebx ; Поместить значение регистра ebx в стек push [buf] ; Поместить значение переменной buf в стек push word [ax] ; Поместить в стек слово по адресу в ах Существует ещё две команды для добавления значений в стек. Это команда pusha, которая помещает в стек содержимое всех регистров общего назначения в следующем порядке: ax, cx, dx, bx, sp, bp, si, di. А также команда pushf, которая служит для перемещения в стек содержимого регистра флагов. Обе эти команды не имеют операндов.</p>
+</section>
+</section>
+</section>
+<section id="извлечение-элемента-из-стека." class="level1">
+<h1>2.1.2. Извлечение элемента из стека.</h1>
+<p>Команда рор извлекает значение из стека, т.е. извлекает значение из ячейки памяти, на которую указывает регистр еsp, после этого уменьшает значение регистра еsp на 4. У этой команды также один операнд, который может быть регистром или переменной в памяти. Нужно помнить, что извлечённый из стека элемент не стирается из памяти и остаётся как “мусор”, который будет перезаписан при записи нового значения в стек. Примеры:</p>
+<section id="pop-eax-поместить-значение-из-стека-в-регистр-еax" class="level2">
+<h2 class="anchored" data-anchor-id="pop-eax-поместить-значение-из-стека-в-регистр-еax">pop eax ; Поместить значение из стека в регистр еax</h2>
+<p>pop [buf] ; Поместить значение из стека в buf pop word[si] ; Поместить значение из стека в слово по адресу в sі Аналогично команде записи в стек существует команда рора, которая восстанавливает из стека все регистры общего назначения, и команда popf для перемещения значений из вершины стека в регистр флагов.</p>
+</section>
+<section id="инструкции-организации-циклов" class="level2">
+<h2 class="anchored" data-anchor-id="инструкции-организации-циклов">2.2. Инструкции организации циклов</h2>
+<p>Для организации циклов существуют специальные инструкции. Для всех инструкций максимальное количество проходов задаётся в регистре есх. Наиболее простой является инструкция loop. Она позволяет организовать безусловный цикл,</p>
+<p>типичная структура которого имеет следующий вид:</p>
+<pre><code>mov ecx, 100 ; Количество проходов
+NextStep:</code></pre>
+<p><span class="math inline">\(\qquad\)</span> <span class="math inline">\(\qquad\)</span> ; тело цикла <span class="math inline">\(\qquad\)</span> Loop NextStep ; Повторить <code>есх</code> раз от метки NextStep</p>
+<p>Иструкция loop выполняется в два этапа. Сначала из регистра есх вычитается единица и его значение сравнивается с нулём. Если регистр не равен нулю, то выполняется переход к указанной метке. Иначе переход не выполняется и управление передаётся команде, которая следует сразу после команды loop.</p>
+</section>
+</section>
+<section id="выполнение-лабораторной-работы" class="level1">
+<h1>3.Выполнение лабораторной работы</h1>
+<section id="реализация-циклов-в-nasm" class="level2">
+<h2 class="anchored" data-anchor-id="реализация-циклов-в-nasm">3.1. Реализация циклов в NASM</h2>
+<p>Создали каталог для программам лабораторной работы № 8 , перешли в него и далее создали файл lab8-1.asm:</p>
+<pre><code>compagzamov@fedora:~$ mkdir ~/arch-pc/lab08
+compagzamov@fedora:~$ cd ~/arch-pc/lab08
+compagzamov@fedora:~/arch-pc/lab08$ touch lab8-1.asm
+compagzamov@fedora:~/arch-pc/lab08$</code></pre>
+</section>
+<section id="puc.-8.2.-lab01" class="level2">
+<h2 class="anchored" data-anchor-id="puc.-8.2.-lab01">Puc. 8.2. lab01</h2>
+<p>При реализации циклов в NASM с использованием инструкции loop необходимо помнить о том, что эта инструкция использует регистр есх в качестве счетчика и на каждом шаге уменьшает его значение на единицу. В качестве примера рассмотрели программу, которая выводит значение регистра есх. Внимательно изучили текст программы (Листинг 8.1) и ввели его в файл lab8-1.asm. <img src="image/img-1.jpeg" class="img-fluid" alt="img-1.jpeg"></p>
+<p>Puc. 8.3. lab02</p>
+<p>Сохранили файл и проверили его работу: работа корректна.</p>
+<pre><code>compagzamov@fedora:~/arch-pc/lab08$ co ~/arch-pc/lab08
+nasm -f elf lab8-1.asm
+ld -m elf_i386 lab8-1.o -o lab8-1
+./lab8-1
+Введите N: 7
+1
+2
+3
+4
+5
+6
+7</code></pre>
+<p>Puc. 8.4. lab03 Изменили текст программы, добавив изменение значение регистра есх в цикле.</p>
+<pre><code>compagzamov@fedora:~/arch-pc/lab08$ cat &gt; ~/arch-pc/lab08/lab8-1.asm &lt;&lt; 'EOF'
+Sinclude 'in_out.asm'
+SECTION .data
+msg: DB 'Введите N: ',0
+SECTION .bss
+N: RESB 10
+SECTION .text
+GLOBAL _start
+_start:
+mov eax, msg
+call sprint
+mov eax, N
+call sread
+mov eax, N
+call atoi
+mov ecx, eax
+mov eax, 0
+Label:
+sub ecx,1 ; `ecx=ecx-1` - ИЗМЕНЕНИЕ ЕСX В ТЕЛЕ ЦИКЛА
+mov [N],ecx
+mov eax,[N]
+call iprintLF
+loop label ; ЗТО ПРИВЕДЕТ К НЕКОРРЕКТНОЙ РАБОТЕ!
+call quit
+EOF
+compagzamov@fedora:~/arch-pc/lab08$ cd ~/arch-pc/lab08
+nasm -f elf lab8-1.asm
+ld -m elf_i386 lab8-1.o -o lab8-1
+./lab8-1
+Введите N: 6
+5
+5
+compagzamov@fedora: /arch-pc/lab08$</code></pre>
+<p>Puc. 8.5. lab04</p>
+<p>Теперь из-за того, что регистр есх на каждой итерации уменьшается на два значения, количество итераций уменьшается вдвое.</p>
+<p>Добавили команды push и рор в программу, и теперь количество итераций совпадает введённому N, но произошло смещение выводимых чисел на -1.</p>
+<pre><code>compagzamov@fedora: /arch-pc/lab00$ cat &gt; /arch-pc/lab08/lab8-1.asm &lt;&lt; 'EOF'
+%include 'in_out.asm'
+SECTION .data
+msg: DB 'Введите N: ',0
+SECTION .bss
+N: RESB 10
+SECTION .text
+GLOBAL _start
+_start:
+mov eax, msg
+call sprint
+mov eax, N
+call sread
+mov eax, N
+call atoi
+mov ecx, eax
+mov eax, 0
+label:
+push ecx ; COXPAHREM ECX B CTEK
+sub ecx,1
+mov [N],ecx
+mov eax,[N]
+call iprintLF
+pop ecx ; ВОССТАНАВЛИВАЕМ ЕСХ ИЗ СТЕКА
+loop label
+call quit
+EOF
+compagzamov@fedora: /arch-pc/lab00$ cd /arch-pc/lab08
+nasm -f elf lab8-1.asm
+ld -m elf_i386 lab8-1.o -o lab8-1
+./lab8-1
+Введите N: 8
+7
+6
+5
+4
+3
+2
+1
+0</code></pre>
+<p>Puc. 8.6. lab05</p>
+</section>
+</section>
+<section id="обработка-аргументов-командной-строки" class="level1">
+<h1>3.2. Обработка аргументов командной строки</h1>
+<p>Создали файл lab8-2.asm в каталоге /arch-pc/lab08 и введите в него текст программы из листинга 8.2. Создали исполняемый файл и запустили его, указав аргументы: аргумент1 аргумент 2 ‘аргумент 3’. Было обработано 4 аргумента, ибо Пробелы делят аргументы на 4, но при этом, можно использоват пробелы внутри отдельных аргументов, используя фигурные скобки. <img src="image/img-2.jpeg" class="img-fluid" alt="img-2.jpeg"></p>
+<p>Puc. 8.7. lab06</p>
+<p>Рассмотрели еще один пример программы которая выводит сумму чисел, которые передаются в программу как аргументы. Создали файл lab8-3.asm в каталоге <span class="math inline">\(\sim / \operatorname{arch}-\mathrm{pc} / \mathrm{lab} 08\)</span> и ввели в него текст программы из листинга 8.3.</p>
+<p>Создали исполняемый файл и запустили его, указав аргументы. Пример результата работы программы: <img src="image/img-3.jpeg" class="img-fluid" alt="img-3.jpeg"></p>
+<p>Puc. 8.8. lab07 Изменили текст программы из листинга 8.3 для вычисления произведения аргументов командной строки. <img src="image/img-4.jpeg" class="img-fluid" alt="img-4.jpeg"></p>
+<p>Puc. 8.9. lab08</p>
+</section>
+<section id="выполнение-самостоятельной-работы" class="level1">
+<h1>4. Выполнение самостоятельной работы</h1>
+<p>Написали программу, которая находит сумму значений функции <span class="math inline">\(f(x)\)</span> для <span class="math inline">\(x=x 1\)</span>, <span class="math inline">\(x 2, \ldots, x n\)</span>, т.е. программа должна выводить значение <span class="math inline">\(f(x 1)+f(x 2)+\ldots+f(x n)\)</span>. Значения <span class="math inline">\(x i\)</span> передаются как аргументы. Вид функции <span class="math inline">\(f(x)\)</span> выбрали из таблицы 8.1 вариантов заданий в соответствии с вариантом, полученным при выполнении лабораторной работы № 7(вариант 8: 7+2x) <img src="image/img-5.jpeg" class="img-fluid" alt="img-5.jpeg"></p>
+<p>Puc. 8.10. sam01</p>
+<p>Создали исполняемый файл и проверили его работу на нескольких наборах <span class="math inline">\(x=x 1\)</span>, <span class="math inline">\(x 2, \ldots, x n\)</span>. <img src="image/img-6.jpeg" class="img-fluid" alt="img-6.jpeg"></p>
+<p>Puc. 8.11. sam02</p>
+<p>Совершили проверку с различными значениями, и все окончательные выводы оказались правильными.</p>
+</section>
+<section id="выводы" class="level1">
+<h1>5.Выводы</h1>
+<section id="в-ходе-лабораторной-работы-были-приобретены-практические-навыки-написания-программ-на-языке-ассемблера-nasm-с-использованием-циклов-и-обработкой-аргументов-командной-строки.-были-изучены-следующие-ключевые-аспекты" class="level2">
+<h2 class="anchored" data-anchor-id="в-ходе-лабораторной-работы-были-приобретены-практические-навыки-написания-программ-на-языке-ассемблера-nasm-с-использованием-циклов-и-обработкой-аргументов-командной-строки.-были-изучены-следующие-ключевые-аспекты">В ходе лабораторной работы были приобретены практические навыки написания программ на языке ассемблера NASM с использованием циклов и обработкой аргументов командной строки. Были изучены следующие ключевые аспекты:</h2>
+</section>
+<section id="работа-команды-loop" class="level2">
+<h2 class="anchored" data-anchor-id="работа-команды-loop">1. Работа команды loop</h2>
+<p>Команда loop использует регистр ЕСХ в качестве счетчика циклов. При выполнении команды значение ЕСХ автоматически уменьшается на 1, после чего производится проверка - если ЕСХ не равен нулю, выполняется переход на указанную метку. Это позволяет компактно организовывать циклы с фиксированным количеством итераиий.</p>
+</section>
+<section id="организация-циклов-через-условные-переходы" class="level2">
+<h2 class="anchored" data-anchor-id="организация-циклов-через-условные-переходы">2. Организация циклов через условные переходы</h2>
+<p>Альтернативный способ создания циклов без использования loop involves применение команд арифметики и условных переходов. Например, конструкиия dec ecx followed by jnz метка обеспечивает аналогичную функииональность, но предоставляет большую гибкость, позволяя использовать различные условия выхода из цикла и любые регистры в качестве счетчиков.</p>
+</section>
+<section id="определение-стека" class="level2">
+<h2 class="anchored" data-anchor-id="определение-стека">3. Определение стека</h2>
+<p>Стек представляет собой структуру данных типа LIFO (Last-In-First-Out), где последний добавленный элемент извлекается первым. В архитектуре х86 стек реализован как область памяти с динамическим указателем вершины стека (ESP/RSP), которая растет в сторону младших адресов.</p>
+</section>
+<section id="механизм-выборки-данных-из-стека" class="level2">
+<h2 class="anchored" data-anchor-id="механизм-выборки-данных-из-стека">4. Механизм выборки данных из стека</h2>
+<p>Выборка данных из стека осуществляется в строгом соответствии с приниипом LIFO. Команда push сохраняет данные в стек, уменьшая указатель стека, а команда рор извлекает данные, увеличивая указатель. Такой подход гарантирует, что последний сохраненный элемент будет извлечен первым, что критически важно для корректного управления данными и адресами возврата при вызовах функиий.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
