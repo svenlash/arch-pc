@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>main</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="main_files/libs/clipboard/clipboard.min.js"></script>
+<script src="main_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="main_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="main_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="main_files/libs/quarto-html/popper.min.js"></script>
+<script src="main_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="main_files/libs/quarto-html/anchor.min.js"></script>
+<link href="main_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="main_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="main_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="main_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="main_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="российский-университет-дружбы-народов" class="level1">
+<h1>РОССИЙСКИЙ УНИВЕРСИТЕТ ДРУЖБЫ НАРОДОВ</h1>
+<p>Факультет физико-математических и естественных наук Кафедра прикладной информатики и теории вероятностей</p>
+<section id="отчет-по-лабораторной-работе-6" class="level2">
+<h2 class="anchored" data-anchor-id="отчет-по-лабораторной-работе-6">Отчет по лабораторной работе №6</h2>
+<p>дисииплина: Архитектура ЭВМ</p>
+<p>Студент: Агзамов Артур Дамирович(1032253528) Группа: НКАбд-01-25</p>
+</section>
+</section>
+<section id="цель-работы" class="level1">
+<h1>1.Цель работы</h1>
+<p>Освоение арифметических инструкций языка ассемблера NASM.</p>
+</section>
+<section id="теоретическое-введение" class="level1">
+<h1>2. Теоретическое введение</h1>
+<section id="адресация-в-nasm" class="level3">
+<h3 class="anchored" data-anchor-id="адресация-в-nasm">2.1.1. Адресация в NASM</h3>
+<p>Большинство инструкций на языке ассемблера требуют обработки операндов. Адрес операнда предоставляет место, где хранятся данные, подлежащие обработке. Это могут быть данные хранящиеся в регистре или в ячейке памяти. Далее рассмотрены все существующие способы задания адреса хранения операндов - способы адресации. Существует три основных способа адресации:</p>
+<ul>
+<li>Регистровая адресация - операнды хранятся в регистрах и в команде используются имена этих регистров, например: mov ax,bx.</li>
+<li>Непосредственная адресация - значение операнда задается непосредственно в команде, Например: mov ax,2.</li>
+<li>Адресация памяти - операнд задает адрес в памяти. В команде указывается символическое обозначение ячейки памяти, над содержимым которой требуется выполнить операцию.</li>
+</ul>
+<p>Например, определим переменную intg DD 3 - это означает, что задается область памяти размером 4 байта, адрес которой обозначен меткой intg. В таком случае, команда mov eax, [intg] копирует из памяти по адресу intg данные в регистр eax. В свою очередь команда mov [intg],eax запишет в память по адресу intg данные из регистра еax. Также рассмотрим команду mov eax,intg В этом случае в регистр еax запишется адрес intg. Допустим, для intg выделена память начиная с ячейки с адресом <span class="math inline">\(0 x 600144\)</span>, тогда команда mov eax,intg аналогична команде mov eax,0x600144 - т.е. эта команда запишет в регистр еax число 0x600144.</p>
+</section>
+<section id="арифметические-операции-в-nasm" class="level3">
+<h3 class="anchored" data-anchor-id="арифметические-операции-в-nasm">2.1.2. Арифметические операции в NASM</h3>
+</section>
+<section id="целочисленное-сложение-add." class="level3">
+<h3 class="anchored" data-anchor-id="целочисленное-сложение-add.">2.2.1. Целочисленное сложение add.</h3>
+<p>Схема команды целочисленного сложения add (от англ. addition добавление) выполняет сложение двух операндов и записывает результат по адресу</p>
+<p>первого операнда. Команда add работает как с числами со знаком, так и без знака и выглядит следующим образом: add &lt;операнд_1&gt;, &lt;операнд_2&gt; Допустимые сочетания операндов для команды add аналогичны сочетаниям операндов для команды mov. Так, например, команда add eax,ebx прибавит значение из регистра еax к значению из регистра ebx и запишет результат в регистр eax. Примеры: add ax,5 : <span class="math inline">\(\mathrm{AX}=\mathrm{AX}+5\)</span> add dx,ex ; DX = DX + CX add dx,cl ; Ошибка: разный размер операндов.</p>
+</section>
+</section>
+<section id="целочисленное-вычитание-sub." class="level1">
+<h1>2.2.2. Целочисленное вычитание sub.</h1>
+<p>Команда целочисленного вычитания sub (от англ. subtraction - вычитание) работает аналогично команде add и выглядит следующим образом: sub &lt;операнд_1&gt;, &lt;операнд_2&gt; Так, например, команда sub ebx, 5 уменьшает значение регистра ebx на 5 и записывает результат в регистр ebx.</p>
+<section id="команды-инкремента-и-декремента." class="level3">
+<h3 class="anchored" data-anchor-id="команды-инкремента-и-декремента.">2.2.3. Команды инкремента и декремента.</h3>
+<p>Довольно часто при написании программ встречается операция прибавления или вычитания единицы. Прибавление единицы называется инкрементом, а вычитание - декрементом. Для этих операций существуют специальные команды: inc (от англ. increment) и dec (от англ. decrement), которые увеличивают и уменьшают на 1 свой операнд. Эти команды содержат один операнд и имеет следующий вид: inc &lt;операнд&gt; dec &lt;операнд&gt; Операндом может быть регистр или ячейка памяти любого размера. Команды инкремента и декремента выгодны тем, что они занимают меньше места, чем соответствующие команды сложения и вычитания. Так, например, команда inc ebx</p>
+<p>увеличивает значение регистра ebx на 1, а команда inc ax уменьшает значение регистра ах на 1.</p>
+</section>
+</section>
+<section id="команда-изменения-знака-операнда-neg." class="level1">
+<h1>2.2.4. Команда изменения знака операнда neg.</h1>
+<p>Еще одна команда, которую можно отнести к арифметическим командам это команда изменения знака neg: neg &lt;операнд&gt; Команда neg рассматривает свой операнд как число со знаком и меняет знак операнда на противоположный. Операндом может быть регистр или ячейка памяти любого размера. <span class="math inline">\(\operatorname{mov} \mathrm{ax}, 1: \mathrm{AX}=1\)</span> neg ax <span class="math inline">\(: \mathrm{AX}=-1\)</span></p>
+<section id="команды-умножения-mul-и-imul." class="level3">
+<h3 class="anchored" data-anchor-id="команды-умножения-mul-и-imul.">2.2.5. Команды умножения mul и imul.</h3>
+<p>Умножение и деление, в отличии от сложения и вычитания, для знаковых и беззнаковых чисел производиться по-разному, поэтому существуют различные команды. Для беззнакового умножения используется команда mul (от англ. multiply - умножение): mul &lt;операнд&gt; Для знакового умножения используется команда imul: imul &lt;операнд&gt; Для команд умножения один из сомножителей указывается в команде и должен находиться в регистре или в памяти, но не может быть непосредственным операндом. Второй сомножитель в команде явно не указывается и должен находиться в регистре EAX,AX или AL, а результат помещается в регистры EDX:EAX, DX:AX или AX, в зависимости от размера операнда 6.1.</p>
+<p>Таблица 6.1. Регистры используемые командами умножения в Nasm</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Размер операнда</th>
+<th style="text-align: left;">Неявный множитель</th>
+<th style="text-align: left;">Результат умножения</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1 байт</td>
+<td style="text-align: left;">AL</td>
+<td style="text-align: left;">AX</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2 байта</td>
+<td style="text-align: left;">AX</td>
+<td style="text-align: left;">DX:AX</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4 байта</td>
+<td style="text-align: left;">EAX</td>
+<td style="text-align: left;">EDX:EAX</td>
+</tr>
+</tbody>
+</table>
+<p>Пример использования инструкции mul: i dw 270 mov ax, <span class="math inline">\(100: \mathrm{AX}=100\)</span> mul a : <span class="math inline">\(\mathrm{AX}=\mathrm{AX}^{*} \mathrm{a}\)</span>. mul bl : <span class="math inline">\(\mathrm{AX}=\mathrm{AL} * \mathrm{BL}\)</span> mul ax ; DX:AX = AX*AX</p>
+</section>
+</section>
+<section id="команды-деления-div-и-idiv." class="level1">
+<h1>2.2.6. Команды деления div и idiv.</h1>
+<p>Для деления, как и для умножения, существует 2 команды div (от англ. divide деление) и idiv: div &lt;делитель&gt; ; Беззнаковое деление idiv &lt;делитель&gt; ; Знаковое деление В командах указывается только один операнд - делитель, который может быть регистром или ячейкой памяти, но не может быть непосредственным операндом. Местоположение делимого и результата для команд деления зависит от размера делителя. Кроме того, так как в результате деления получается два числа - частное и остаток, то эти числа помещаются в определённые регистры 6.2.</p>
+<p>Таблица 6.2. Регистры используемые командами деления в Nasm</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Размер операнда (делителя)</th>
+<th style="text-align: left;">Делимое</th>
+<th style="text-align: left;">Частное</th>
+<th style="text-align: left;">Остаток</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1 байт</td>
+<td style="text-align: left;">AX</td>
+<td style="text-align: left;">AL</td>
+<td style="text-align: left;">AH</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2 байта</td>
+<td style="text-align: left;">DX:AX</td>
+<td style="text-align: left;">AX</td>
+<td style="text-align: left;">DX</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4 байта</td>
+<td style="text-align: left;">EDX:EAX</td>
+<td style="text-align: left;">EAX</td>
+<td style="text-align: left;">EDX</td>
+</tr>
+</tbody>
+</table>
+<p>Например, после выполнения инструкций</p>
+<p>mov ax, 31 mov dl, 15 div dl</p>
+<p>результат 2 (31/15) будет записан в регистр al, а остаток 1 (остаток от деления 31/15) — в регистр ah. Если делитель — это слово (16-бит), то делимое должно записываться в регистрах dx:ax. Так в результате выполнения инструкций mov ax, 2 ; загрузить в регистровую mov dx, 1 ; пару <code>dx:ax</code> значение 10002 h mov bx, 10 h div bx</p>
+<p>в регистр ах запишется частное 1000 h (результат деления 10002 h на 10 h ), а в регистр dx - 2 (остаток от деления).</p>
+</section>
+<section id="перевод-символа-числа-в-десятичную-символьную-запись" class="level1">
+<h1>2.3. Перевод символа числа в десятичную символьную запись</h1>
+<p>Ввод информации с клавиатуры и вывод её на экран осуществляется в символьном виде. Кодирование этой информации производится согласно кодовой таблице символов ASCII. ASCII - сокращение от American Standard Code for Information Interchange (Американский стандартный код для обмена информацией). Согласно стандарту ASCII каждый символ кодируется одним байтом. Расширенная таблица ASCII состоит из двух частей. Первая (символы с кодами 0-127) является универсальной (см. Приложение.), а вторая (коды 128-255) предназначена для специальных символов и букв национальных алфавитов и на компьютерах разных типов может меняться. Среди инструкций NASM нет такой, которая выводит числа (не в символьном виде). Поэтому, например, чтобы вывести число, надо предварительно преобразовать его цифры в ASCII-коды этих цифр и выводить на экран эти коды, а не само число. Если же выводить число на экран непосредственно, то экран воспримет его не как число, а как последовательность ASCII-символов - каждый байт числа будет воспринят как один ASCII-символ - и выведет на экран эти символы. Аналогичная ситуация происходит и при вводе</p>
+<p>данных с клавиатуры. Введенные данные будут представлять собой символы, что сделает невозможным получение корректного результата при выполнении над ними арифметических операций. Для решения этой проблемы необходимо проводить преобразование ASCII символов в числа и обратно. Для выполнения лабораторных работ в файле in_out.asm реализованы подпрограммы для преобразования ASCII символов в числа и обратно. Это:</p>
+<ul>
+<li>iprint - вывод на экран чисел в формате ASCII, перед вызовом iprint в регистр еах необходимо записать выводимое число (mov eax,).</li>
+<li>iprintLF - работает аналогично iprint, но при выводе на экран после числа добавляет к символ перевода строки.</li>
+<li>atoi - функция преобразует ascii-код символа в целое число и записает результат в регистр еax, перед вызовом atoi в регистр еax необходимо записать число (mov eax,).</li>
+</ul>
+</section>
+<section id="выполнение-лабораторной-работы" class="level1">
+<h1>3.Выполнение лабораторной работы</h1>
+<section id="символьные-и-численные-данные-в-nasm" class="level2">
+<h2 class="anchored" data-anchor-id="символьные-и-численные-данные-в-nasm">3.1. Символьные и численные данные в NASM</h2>
+<p>Создали каталог для программ лабораторной работы №6, перешли в него и добавили первый рабочий файл.</p>
+<pre><code>compagzamov@fedora:~$ mkdir ~/arch-pc/lab06
+compagzamov@fedora:~$ cd ~/arch-pc/lab06
+compagzamov@fedora:~/arch-pc/lab06$ touch lab6-1.asm</code></pre>
+<p>Ввели в данный файл текст программы из листинга 6.1. В данной программе в регистр eax записали 6 (mov eax,‘6’), в регистр ebx символ 4 (mov ebx,‘4’). Далее к значению в регистре еax прибавили значение регистра ebx (add eax,ebx, результат сложения записалсяв регистр еax). Вывели результат. Так как для работы функции sprintLF в регистр еax должен быть записан адрес, использовали дополнительную переменную. Для этого записали значение регистра еax в переменную buf1 (mov [buf1],eax), а затем записали адрес переменной buf1 в регистр еax (mov eax,buf1) и вызвали функцию sprintLF.</p>
+<pre><code>compagzamov@fedora: /arch-pc/lab06$
+cat &gt; lab6-1.asm &lt;&lt; 'EOF'
+#include 'in_out.asm'
+SECTION .bss
+buf1: RESB 80
+SECTION .text
+CLOBAL _start
+_start:
+mov eax,'6'
+mov ebx,'4'
+add eax,ebx
+mov [buf1],eax
+mov eax,buf1
+call sprintLF
+call quit
+EOF
+</code></pre>
+<p>Создали исполняемый файл и запустили его. compagzamov@fedora: /arch-pc/lab06$ nasm -f elf lab6-1.asm ld -m elf i386 -o lab6-1 lab6-1.o /lab6-1</p>
+<p>В данном случае при выводе значения регистра еax мы ожидали увидеть число 10. Однако результатом стал символ j. Это произошло потому, что код символа 6 равен 00110110 в двоичном представлении (или 54 в десятичном представлении), а код символа <span class="math inline">\(4-00110100\)</span> (52). Команда add eax,ebx записала в регистр еax сумму кодов - 01101010 (106), что в свою очередь является кодом символа j (см. таблицу ASCII в приложении). <img src="image-img0.jpeg" class="img-fluid" alt="img-0.jpeg"></p>
+<p>Puc. 6.4. lab01 Изменили текст программы и вместо символов, записали в регистры числа. Исправили текст программы (Листинг 6.1) следующим образом: <img src="image-img1.jpeg" class="img-fluid" alt="img-1.jpeg"></p>
+<p>Puc. 6.5. lab02</p>
+<p>Создали исполняемый файл и запустили его. Как и в предыдущем случае при исполнении программы мы не получили число 10. В данном случае вывелся символ с кодом 10. Код 10 в ASCII соответствует символу LF . <img src="image-img2.jpeg" class="img-fluid" alt="img-2.jpeg"></p>
+<p>Создали файл lab6-2.asm в том что каталоге, что и первый, и ввели в него текст программы из листинга 6.2. <img src="image-img3.jpeg" class="img-fluid" alt="img-3.jpeg"></p>
+<p>Puc. 6.7. lab03 Создали исполняемый файл и запустили его. compagzamov@fedora: /arch-pc/lab06$ nasm -f elf lab6-2.asm ld -m elf_i386 lab6-2.o -o lab6-2 <span class="math inline">\(/\)</span> lab6-2 186 Puc. 6.8. lab04</p>
+<p>В результате работы программы мы получили число 106. В данном случае, как и в первом, команда add скложила коды символов ‘ 6 ’ и ‘ 4 ’ <span class="math inline">\((54+52=106)\)</span>. Однако, в отличии от программы из листинга 6.1, функция iprintLF позволила вывести число, а не символ, кодом которого является это число.</p>
+<p>Аналогично предыдущему примеру изменили символы на числа. Заменили строки <img src="image-img4.jpeg" class="img-fluid" alt="img-4.jpeg"></p>
+<p>Puc. 6.9. lab05 Создали исполняемый файл и запустили его. Различие iprint и iprintLF в том, что: первый выводит символы значения без перевода строки, а второй добавляет автоматический перевод строки (символ LF, код 10) строки.</p>
+</section>
+</section>
+<section id="выполнение-арифметических-операций-в-nasm" class="level1">
+<h1>3.2. Выполнение арифметических операций в NASM</h1>
+<p>В качестве примера выполнения арифметических операций в NASM привели программу вычисления арифметического выражения <span class="math inline">\(f(x)=(5 * 2+3) / 3\)</span>. Создали файл lab6-2.asm в рабочем каталоге. И перенесли в него текст с листинга 6.3. Создали исполняемый файл и запустите его. Результат работы оказался верным.</p>
+<pre><code>compagzamov@fedora: /arch-pc/lab06$ cat &gt; /arch-pc/lab06/lab6-3.asm
+    &lt;&lt; 'EOF'
+%include 'in_out.asm'
+SECTION .text
+GLOBAL _start
+_start:
+: Вычисление выражения (5 * 2 + 3) / 3
+: 5 * 2
+mov eax, 5
+mov ebx, 2
+mul ebx ; eax = 5 * 2 = 10
+: + 3
+add eax, 3 ; eax = 10 + 3 = 13
+: / 3
+mov ebx, 3
+mov edx, 0 ; обнуляем edx для деления
+div ebx ; eax = 13 / 3 = 4, edx = 1 (остаток)
+: Вывод результата
+call iprintLF ; Выведет 4 (целая часть)
+: Вывод остатка (опционально)
+mov eax, edx ; Переносим остаток в eax
+call iprintLF ; Выведет 1 (остаток)
+call quit
+EOF
+compagzamov@fedora: /arch-pc/lab06$ nasm -f elf lab6-3.asm
+compagzamov@fedora: /arch-pc/lab06$ ld -m elf_i386 lab6-3.o -o lab6-
+3
+compagzamov@fedora: /arch-pc/lab06$ ./lab6-3
+4</code></pre>
+<p>Изменили текст программы для вычисления выражения <span class="math inline">\(f(x)=(4 * 6+2) / 5\)</span>. Создали исполняемый файл и проверили его работу.</p>
+<pre><code>compagzamov@fedora: /arch-pc/lab0G$ cat &gt; /arch-pc/lab06/lab6-3.asm &lt;&lt; 'EOF'
+;--------------------------------
+; Программа вычисления выражения (4*6+2)/5
+\%include 'in_out.asm' ; подключение внешнего файла
+SECTION .data
+div: DB 'Результат: ',0
+rem: DB 'Остаток от деления: ',0
+SECTION .text
+GLOBAL _start
+_start:
+; ---- Вычисление выражения
+mov eax,4 ; EAX=4
+mov ebx,6 ; EBX=6
+mul ebx ; EAX=EAX*EBX = 4*6 = 24
+add eax,2 ; EAX=EAX+2 = 24+2 = 26
+xor edx,edx ; обнуляем EDX для корректной работы div
+mov ebx,5 ; EBX=5
+div ebx ; EAX=EAX/5 = 26/5 = 5, EDX=1
+mov edi,eax ; запись результата вычисления в 'edi'
+; ---- Вывод результата на экран
+mov eax,div ; вызов подпрограммы печати
+call sprint ; сообщения 'Результат: '
+mov eax,edi ; вызов подпрограммы печати значения
+call iprintLF ; из 'edi' в виде символов
+mov eax,rem ; вызов подпрограммы печати
+call sprint ; сообщения 'Остаток от деления: '
+mov eax,edx ; вызов подпрограммы печати значения
+call iprintLF ; из 'edx' (остаток) в виде символов
+call quit ; вызов подпрограммы завершения
+EOF
+compagzamov@fedora: /arch-pc/lab0G$ cd /arch-pc/lab06
+nasm -f elf lab6-3.asm
+ld -m elf_i386 lab6-3.o -o lab6-3
+./lab6-3
+Результат: 5
+Остаток от деления: 1</code></pre>
+<p>В качестве другого примера рассмотрели программу вычисления варианта задания по номеру студенческого билета, работающую по следующему алгоритму:</p>
+<ul>
+<li>вывести запрос на введение № студенческого билета Демидова А. В. 67 Архитектура ЭВМ</li>
+<li>вычислить номер варианта по формуле: <span class="math inline">\((S n \bmod 20)+1\)</span>, где <span class="math inline">\(S n\)</span> - номер студенческого билета (В данном случае <span class="math inline">\(a \bmod b\)</span> - это остаток от деления <span class="math inline">\(a\)</span> на <span class="math inline">\(b\)</span> ).</li>
+<li>вывести на экран номер варианта</li>
+</ul>
+<p>Создали файл variant.asm в рабочем каталоге. Перенесли в него листинг 6.4. Создали исполняемый файл и запустили его. Программа отработала чётко.</p>
+<pre><code>compagzamov@fedora: /arch-pc/lab06$ cat &gt; /arch-pc/lab06/variant.asm &lt;&lt; 'EOF'
+; Программа вычисления варианта
+%include 'in_out.asm'
+SECTION .data
+msg: DB 'Введите b студенческого билета: ',0
+rem: DB 'Ваш вариант: ',0
+SECTION .bss
+x: RESB 80
+SECTION .text
+GLOBAL _start
+_start:
+mov eax, msg
+call sprintfF
+mov ecx, x
+mov edx, 80
+call sread
+mov eax,x ; вызов подпрограммы преобразования
+call atoi ; ASCII кода в число, `eax=x`
+xor edx,edx
+mov ebx,20
+div ebx
+inc edx
+mov eax,rem
+call sprint
+mov eax,edx
+call iprintLF
+call quit
+EOF
+compagzamov@fedora: /arch-pc/lab06$ nasm -f elf variant.asm
+ld -m elf_i386 variant_final.o -o variant_final
+./variant_final
+Для номера 1032253528
+Ваш вариант: 9</code></pre>
+</section>
+<section id="выполнение-самостоятельной-работы" class="level1">
+<h1>4. Выполнение самостоятельной работы</h1>
+<p>Написали программу вычисления выражения <span class="math inline">\(\mathrm{y}=\mathrm{f}(\mathrm{x})\)</span>, которая способна выводить выражение для вычисления, выводить запрос на ввод значения x , вычислять заданное выражение в зависимости от введенного x , выводить результат вычислений. Вид функции был взят из таблицы 6.3. под номером 9 , который получился при выполнении лабораторной работы. Создали исполняемый файл и проверили его для значений х1, х2 из 6.3. Вывод оказался корректным.</p>
+<pre><code>compagzamov@fedora: /arch-pc/lab06$ cat &gt; /arch-pc/lab06/lab6-4.asm &lt;&lt; 'EOF'
+%include 'in_out.asm'
+SECTION .data
+msg: DB 'Введите x: ',0
+result: DB 'Результат: ',0
+SECTION .bss
+x: RESB 10
+SECTION .text
+GLOBAL _start
+_start:
+    mov eax, msg
+    call sprint
+    mov eax, x
+    call sread
+    mov eax, x
+    call atoi
+    ; Вычисление f(x) = 10 + (31x - 5) = 31x + 5
+    mov ebx, 31
+    mul ebx
+    add eax, 5
+    mov edi, eax
+    mov eax, result
+    call sprint
+    mov eax, edi
+    call iprintLF
+    call quit
+EOF
+compagzamov@fedora: /arch-pc/lab06$ cd /arch-pc/lab06
+hasm -f elf lab6-4.asm
+td -m elf_i386 lab6-4.o -o lab6-4
+./lab6-4
+Введите x: 3
+Результат: 98
+compagzamov@fedora: /arch-pc/lab06$ ./lab6-4
+Введите x: 1
+Результат: 36</code></pre>
+</section>
+<section id="выводы" class="level1">
+<h1>5.Выводы</h1>
+<section id="в-ходе-лабораторной-работы-были-основные-арифметические-инструкции-языка-ассемблера-nasm-также-были-найдены-ответы-на-следующие-вопросы" class="level2">
+<h2 class="anchored" data-anchor-id="в-ходе-лабораторной-работы-были-основные-арифметические-инструкции-языка-ассемблера-nasm-также-были-найдены-ответы-на-следующие-вопросы">В ходе лабораторной работы были основные арифметические инструкции языка ассемблера NASM, также были найдены ответы на следующие вопросы:</h2>
+<ol type="1">
+<li>Какие строки листинга 6.4 отвечают за вывод на экран сообщения ‘Ваш вариант:’?</li>
+</ol>
+<p>Строки: mov eax, msg1 и call sprint. Первая помешает адрес строки “Ваш вариант:” в регистр ЕАХ, вторая вызывает функиию вывода строки на экран. 2. Для чего используются следуюшие инструкции? mov есх, x mov edx, 80 call sread</p>
+<p>Эти инструкции читают ввод пользователя. тоv есх, х помешает адрес буфера х в ЕСХ, mov edx, 80 задаёт максимальную длину ввода (80 символов), call sread вызывает функиию чтения строки с клавиатуры. 3. Для чего используется инструкиия “call atoi”?</p>
+<p>Инструкция call atoi преобразует строку, введённую пользователем, в целое число. Функиия atoi (ASCII to Integer) принимает адрес строки в ЕАХ и возвращает её числовое значение в том же регистре ЕАХ. 4. Какие строки листинга 6.4 отвечают за вычисления варианта?</p>
+<p>Строки: mov ebx, 20, div ebx и inc edx. Они вычисляют номер варианта: делят введённое число на 20, получают остаток от деления и увеличивают его на 1 (чтобы вариантыь начинались с 1, а не с 0). 5. В какой регистр записывается остаток от деления при выполнении инструкции “div ebx”?</p>
+<p>Остаток от деления записывается в регистр EDX.</p>
+</section>
+</section>
+<section id="для-чего-используется-инструкиия-inc-edx" class="level1">
+<h1>6. Для чего используется инструкиия “inc edx”?</h1>
+<p>Инструкция inc edx увеличивает значение в регистре EDX на 1. В контексте программь она преобразует остаток от деления (от 0 до 19) в номер варианта (от 1 до 20). 7. Какие строки листинга 6.4 отвечают за вывод на экран результат вычислений? Строки: mov eax, msg2, call sprint, mov eax, edx и call iprintLF. Первые две выводят сообщение “Результат:”, затем значение из EDX (номер варианта) помещается в ЕАХ и выводится как число с переводом строки.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
