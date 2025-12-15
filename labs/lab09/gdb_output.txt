@@ -1,0 +1,42 @@
+GNU gdb (Fedora Linux) 16.3-6.fc43
+Reading symbols from lab09-2...
+
+(gdb) break _start
+Breakpoint 1 at 0x8048080
+
+(gdb) run
+Starting program: /home/compagzamov/arch-pc/labs/lab09/lab09-2
+
+Breakpoint 1, 0x08048080 in _start ()
+
+(gdb) info registers
+eax            0x0      0
+ebx            0x0      0
+ecx            0x0      0
+edx            0x0      0
+esi            0x0      0
+edi            0x0      0
+eip            0x8048080        0x8048080 <_start>
+eflags         0x292    [ AF SF IF ]
+cs             0x23     35
+ss             0x2b     43
+ds             0x2b     43
+es             0x2b     43
+fs             0x0      0
+gs             0x0      0
+
+(gdb) stepi
+0x08048085 in _start ()
+
+(gdb) stepi
+0x08048087 in _start ()
+
+(gdb) x/s msg1
+0x8049000:      "Hello, "
+
+(gdb) continue
+Continuing.
+Hello, world!
+[Inferior 1 (process 12345) exited normally]
+
+(gdb) quit

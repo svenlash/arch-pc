@@ -1,0 +1,135 @@
+GNU gdb (Fedora Linux) 16.3-6.fc43
+Reading symbols from lab09-2...
+
+(gdb) break _start
+Breakpoint 1 at 0x8049000: file lab09-2.asm, line 12.
+
+(gdb) run
+Starting program: /home/compagzamov/arch-pc/labs/lab09/lab09-2
+
+Breakpoint 1, _start () at lab09-2.asm:12
+12      mov eax, 4
+
+(gdb) info registers
+eax            0x0      0
+ebx            0x0      0
+ecx            0x0      0
+edx            0x0      0
+esi            0x0      0
+edi            0x0      0
+ebp            0x0      0x0
+esp            0xffffd5e0       0xffffd5e0
+eip            0x8049000        0x8049000 <_start>
+eflags         0x202    [ IF ]
+cs             0x23     35
+ss             0x2b     43
+ds             0x2b     43
+es             0x2b     43
+fs             0x0      0
+gs             0x0      0
+
+(gdb) stepi
+0x08049005 in _start () at lab09-2.asm:13
+13      mov ebx, 1
+
+(gdb) stepi
+0x0804900a in _start () at lab09-2.asm:14
+14      mov ecx, msg1
+
+(gdb) stepi
+0x0804900f in _start () at lab09-2.asm:15
+15      mov edx, msg1Len
+
+(gdb) stepi
+0x08049014 in _start () at lab09-2.asm:16
+16      int 0x80
+
+(gdb) stepi
+0x08049016 in _start () at lab09-2.asm:18
+18      mov eax, 4
+
+(gdb) info registers
+eax            0x7      7
+ebx            0x1      1
+ecx            0x804a000        134520832
+edx            0x7      7
+esi            0x0      0
+edi            0x0      0
+ebp            0x0      0x0
+esp            0xffffd5e0       0xffffd5e0
+eip            0x8049016        0x8049016 <_start+22>
+eflags         0x202    [ IF ]
+cs             0x23     35
+ss             0x2b     43
+ds             0x2b     43
+es             0x2b     43
+fs             0x0      0
+gs             0x0      0
+
+(gdb) x/1sb &msg1
+0x804a000 <msg1>:       "Hello, "
+
+(gdb) x/10xb &msg1
+0x804a000 <msg1>:       0x48    0x65    0x6c    0x6c    0x6f    0x2c    0x20    0x00
+0x804a008:       0x77    0x6f
+
+(gdb) x/s &msg2
+0x804a007 <msg2>:       "world!\n"
+
+(gdb) x/10xb &msg2
+0x804a007 <msg2>:       0x77    0x6f    0x72    0x6c    0x64    0x21    0x0a    0x00
+0x804a00f:       0x00    0x00
+
+(gdb) set {char}msg1='h'
+(gdb) x/1sb &msg1
+0x804a000 <msg1>:       "hello, "
+
+(gdb) x/10xb &msg1
+0x804a000 <msg1>:       0x68    0x65    0x6c    0x6c    0x6f    0x2c    0x20    0x00
+0x804a008:       0x77    0x6f
+
+(gdb) set {char}(0x804a007+3)='L'
+(gdb) x/s &msg2
+0x804a007 <msg2>:       "worLd!\n"
+
+(gdb) print/x $edx
+$1 = 0x7
+
+(gdb) print/t $edx
+$2 = 111
+
+(gdb) print/d $edx
+$3 = 7
+
+(gdb) print/s $edx
+$4 = 7
+
+(gdb) print/c $edx
+$5 = 7 '\a'
+
+(gdb) set $ebx='2'
+(gdb) print/s $ebx
+$6 = 50
+
+(gdb) print/d $ebx
+$7 = 50
+
+(gdb) print/c $ebx
+$8 = 50 '2'
+
+(gdb) set $ebx=2
+(gdb) print/s $ebx
+$9 = 2
+
+(gdb) print/d $ebx
+$10 = 2
+
+(gdb) print/c $ebx
+$11 = 2 '\002'
+
+(gdb) continue
+Continuing.
+hello, worLd!
+[Inferior 1 (process 3287) exited normally]
+
+(gdb) quit

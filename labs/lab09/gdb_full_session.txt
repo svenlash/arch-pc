@@ -1,0 +1,151 @@
+GNU gdb (Fedora Linux) 16.3-6.fc43
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from lab09-2...
+
+(gdb) break _start
+Breakpoint 1 at 0x8049000: file lab09-2.asm, line 12.
+
+(gdb) run
+Starting program: /home/compagzamov/arch-pc/labs/lab09/lab09-2
+
+Breakpoint 1, _start () at lab09-2.asm:12
+12      mov eax, 4
+
+(gdb) disassemble _start
+Dump of assembler code for function _start:
+   0x08049000 <+0>:     mov    $0x4,%eax
+   0x08049005 <+5>:     mov    $0x1,%ebx
+   0x0804900a <+10>:    mov    $0x804a000,%ecx
+   0x0804900f <+15>:    mov    $0x7,%edx
+   0x08049014 <+20>:    int    $0x80
+   0x08049016 <+22>:    mov    $0x4,%eax
+   0x0804901b <+27>:    mov    $0x1,%ebx
+   0x08049020 <+32>:    mov    $0x804a007,%ecx
+   0x08049025 <+37>:    mov    $0x7,%edx
+   0x0804902a <+42>:    int    $0x80
+   0x0804902c <+44>:    mov    $0x1,%eax
+   0x08049031 <+49>:    mov    $0x0,%ebx
+   0x08049036 <+54>:    int    $0x80
+End of assembler dump.
+
+(gdb) set disassembly-flavor intel
+(gdb) disassemble _start
+Dump of assembler code for function _start:
+   0x08049000 <+0>:     mov    eax,0x4
+   0x08049005 <+5>:     mov    ebx,0x1
+   0x0804900a <+10>:    mov    ecx,0x804a000
+   0x0804900f <+15>:    mov    edx,0x7
+   0x08049014 <+20>:    int    0x80
+   0x08049016 <+22>:    mov    eax,0x4
+   0x0804901b <+27>:    mov    ebx,0x1
+   0x08049020 <+32>:    mov    ecx,0x804a007
+   0x08049025 <+37>:    mov    edx,0x7
+   0x0804902a <+42>:    int    0x80
+   0x0804902c <+44>:    mov    eax,0x1
+   0x08049031 <+49>:    mov    ebx,0x0
+   0x08049036 <+54>:    int    0x80
+End of assembler dump.
+
+(gdb) layout asm
+   ┌───────────────────────────────────────────────────────────────────────────┐
+   │0x8049000 <_start>         mov    eax,0x4                                 │
+   │0x8049005 <_start+5>       mov    ebx,0x1                                 │
+   │0x804900a <_start+10>      mov    ecx,0x804a000                           │
+   │0x804900f <_start+15>      mov    edx,0x7                                 │
+   │0x8049014 <_start+20>      int    0x80                                    │
+   │0x8049016 <_start+22>      mov    eax,0x4                                 │
+   │0x804901b <_start+27>      mov    ebx,0x1                                 │
+   │0x8049020 <_start+32>      mov    ecx,0x804a007                           │
+   │0x8049025 <_start+37>      mov    edx,0x7                                 │
+   │0x804902a <_start+42>      int    0x80                                    │
+   │0x804902c <_start+44>      mov    eax,0x1                                 │
+   │0x8049031 <_start+49>      mov    ebx,0x0                                 │
+   │0x8049036 <_start+54>      int    0x80                                    │
+   └───────────────────────────────────────────────────────────────────────────┘
+  [выход 0x8049000 в _start () at lab09-2.asm:12]
+> (gdb)
+
+(gdb) layout regs
+   ┌──Регистры────────────────────────────────────────────────────────────────┐
+   │eax            0x0      0                 ebx            0x0      0       │
+   │ecx            0x0      0                 edx            0x0      0       │
+   │esi            0x0      0                 edi            0x0      0       │
+   │ebp            0x0      0x0               esp            0xffffd5e0       │
+   │eip            0x8049000 0x8049000 <_start>                               │
+   │eflags         0x202    [ IF ]           cs             0x23     35      │
+   │ss             0x2b     43               ds             0x2b     43      │
+   │es             0x2b     43               fs             0x0      0       │
+   │gs             0x0      0                                                  │
+   └───────────────────────────────────────────────────────────────────────────┘
+   ┌───────────────────────────────────────────────────────────────────────────┐
+   │0x8049000 <_start>         mov    eax,0x4                                 │
+   │0x8049005 <_start+5>       mov    ebx,0x1                                 │
+   │0x804900a <_start+10>      mov    ecx,0x804a000                           │
+   │0x804900f <_start+15>      mov    edx,0x7                                 │
+   │0x8049014 <_start+20>      int    0x80                                    │
+   │0x8049016 <_start+22>      mov    eax,0x4                                 │
+   │0x804901b <_start+27>      mov    ebx,0x1                                 │
+   │0x8049020 <_start+32>      mov    ecx,0x804a007                           │
+   │0x8049025 <_start+37>      mov    edx,0x7                                 │
+   │0x804902a <_start+42>      int    0x80                                    │
+   │0x804902c <_start+44>      mov    eax,0x1                                 │
+   │0x8049031 <_start+49>      mov    ebx,0x0                                 │
+   │0x8049036 <_start+54>      int    0x80                                    │
+   └───────────────────────────────────────────────────────────────────────────┘
+  [выход 0x8049000 в _start () at lab09-2.asm:12]
+> (gdb)
+
+(gdb) stepi
+0x08049005 in _start () at lab09-2.asm:13
+13      mov ebx, 1
+
+(gdb) info registers
+eax            0x4      4
+ebx            0x0      0
+ecx            0x0      0
+edx            0x0      0
+esi            0x0      0
+edi            0x0      0
+ebp            0x0      0x0
+esp            0xffffd5e0       0xffffd5e0
+eip            0x8049005        0x8049005 <_start+5>
+eflags         0x202    [ IF ]
+cs             0x23     35
+ss             0x2b     43
+ds             0x2b     43
+es             0x2b     43
+fs             0x0      0
+gs             0x0      0
+
+(gdb) stepi
+0x0804900a in _start () at lab09-2.asm:14
+14      mov ecx, msg1
+
+(gdb) x/s msg1
+0x804a000:      "Hello, "
+
+(gdb) stepi
+0x0804900f in _start () at lab09-2.asm:15
+15      mov edx, msg1Len
+
+(gdb) stepi
+0x08049014 in _start () at lab09-2.asm:16
+16      int 0x80
+
+(gdb) continue
+Continuing.
+Hello, world!
+[Inferior 1 (process 2874) exited normally]
+
+(gdb) quit

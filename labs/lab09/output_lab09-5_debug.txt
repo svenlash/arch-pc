@@ -1,0 +1,121 @@
+=== Задание 2: Отладка программы вычисления (3+2)*4+5 ===
+
+1. Исходная программа (lab09-5.asm):
+   --------------------------------------------------
+   mov ebx,3      ; ebx = 3
+   mov eax,2      ; eax = 2
+   add ebx,eax    ; ebx = 3 + 2 = 5
+   mov ecx,4      ; ecx = 4
+   mul ecx        ; ОШИБКА: умножает eax*ecx, но eax=2 → eax=8
+   add ebx,5      ; ebx = 5 + 5 = 10
+   mov edi,ebx    ; edi = 10
+   --------------------------------------------------
+
+2. Компиляция и запуск:
+   $ nasm -f elf lab09-5.asm -o lab09-5.o
+   $ ld -m elf_i386 lab09-5.o -o lab09-5
+   $ ./lab09-5
+   Результат: 10
+
+   Но должно быть: (3+2)*4+5 = 5*4+5 = 20+5 = 25
+
+3. Отладка в GDB:
+   --------------------------------------------------
+   (gdb) break _start
+   (gdb) run
+   
+   Пошаговое выполнение:
+   
+   (gdb) stepi
+   0x08049005 in _start ()      ; mov eax,2
+   (gdb) info registers
+   ebx=3, eax=0
+   
+   (gdb) stepi
+   0x0804900a in _start ()      ; add ebx,eax
+   (gdb) info registers
+   ebx=3, eax=2
+   
+   (gdb) stepi
+   0x0804900c in _start ()      ; mov ecx,4
+   (gdb) info registers
+   ebx=5, eax=2                 ; ebx=3+2=5 ✓
+   
+   (gdb) stepi
+   0x08049011 in _start ()      ; mul ecx
+   (gdb) info registers
+   ebx=5, eax=2, ecx=4
+   
+   (gdb) stepi
+   0x08049013 in _start ()      ; add ebx,5
+   (gdb) info registers
+   ebx=5, eax=8, ecx=4          ; ПРОБЛЕМА: mul ecx умножил eax(2)*ecx(4)=8
+                                 ; но нам нужно умножить ebx(5)*4!
+   
+   (gdb) stepi
+   0x08049015 in _start ()      ; mov edi,ebx
+   (gdb) info registers
+   ebx=10, eax=8                ; ebx=5+5=10
+   
+   (gdb) continue
+   Результат: 10
+   --------------------------------------------------
+
+4. Ошибка в программе:
+   Команда "mul ecx" умножает EAX на ECX, а не EBX на ECX.
+   После "add ebx,eax" в EBX находится сумма (3+2=5), 
+   но команда mul использует EAX (который все еще равен 2).
+
+5. Исправленная программа (lab09-5_correct.asm):
+   --------------------------------------------------
+   %include 'in_out.asm'
+   
+   SECTION .data
+   div: DB 'Результат: ',0
+   
+   SECTION .text
+   GLOBAL _start
+   
+   _start:
+       ; ---- Вычисление выражения (3+2)*4+5
+       mov ebx,3      ; ebx = 3
+       mov eax,2      ; eax = 2
+       add ebx,eax    ; ebx = 3 + 2 = 5
+       mov ecx,4      ; ecx = 4
+       
+       ; Исправление: умножаем EBX на ECX
+       mov eax,ebx    ; переносим результат в EAX
+       mul ecx        ; eax = 5 * 4 = 20
+       mov ebx,eax    ; возвращаем результат в EBX
+       
+       add ebx,5      ; ebx = 20 + 5 = 25
+       mov edi,ebx    ; edi = 25
+       
+       ; ---- Вывод результата на экран
+       mov eax,div
+       call sprint
+       mov eax,edi
+       call iprintLF
+       
+       call quit
+   --------------------------------------------------
+
+6. Проверка исправленной программы:
+   $ nasm -f elf lab09-5_correct.asm -o lab09-5_correct.o
+   $ ld -m elf_i386 lab09-5_correct.o -o lab09-5_correct
+   $ ./lab09-5_correct
+   Результат: 25 ✓
+
+   Пошаговое выполнение исправленной программы:
+   (gdb) stepi 8
+   После mov eax,ebx: eax=5, ebx=5
+   После mul ecx: eax=20
+   После mov ebx,eax: ebx=20
+   После add ebx,5: ebx=25
+
+7. Выводы:
+   - Ошибка была в использовании не того регистра для умножения
+   - Команда mul всегда умножает EAX на операнд
+   - Для умножения EBX на ECX нужно сначала скопировать EBX в EAX
+   - Отладчик GDB помог обнаружить ошибку через пошаговое выполнение
+     и анализ значений регистров
